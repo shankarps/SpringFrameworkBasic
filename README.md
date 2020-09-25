@@ -1,0 +1,2 @@
+This is a practice project to learn with the Udemy course "Introduction to Spring Boot 2 and Spring Framework 5"
+Link -  https://www.udemy.com/course/introduction-to-spring-boot-2-and-spring-framework-5/
