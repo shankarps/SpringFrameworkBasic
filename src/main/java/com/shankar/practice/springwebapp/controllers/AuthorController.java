@@ -1,7 +1,6 @@
 package com.shankar.practice.springwebapp.controllers;
 
-import com.shankar.practice.springwebapp.repositories.AuthorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.shankar.practice.springwebapp.service.AuthorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,20 +8,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AuthorController {
 
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorService authorService;
+
+    public AuthorController(AuthorService authorService) {
+        this.authorService = authorService;
+    }
 
     @RequestMapping(name = "authors", path = "/authors")
     public String getAuthors(Model model){
-        model.addAttribute("authors", authorRepository.findAll());
+        model.addAttribute("authors", authorService.findAll());
         return "authors/list";
     }
 
-    public AuthorRepository getAuthorRepository() {
-        return authorRepository;
-    }
-
-    public void setAuthorRepository(AuthorRepository authorRepository) {
-        this.authorRepository = authorRepository;
-    }
 }

@@ -1,6 +1,7 @@
 package com.shankar.practice.springwebapp.controllers;
 
 import com.shankar.practice.springwebapp.repositories.BookRepository;
+import com.shankar.practice.springwebapp.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,19 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class BookController {
 
-    private final BookRepository bookRepository;
+    private final BookService bookService;
 
-    public BookController(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
     }
 
     @RequestMapping("/books")
     public String getBooks(Model model){
-        model.addAttribute("books", bookRepository.findAll());
+        model.addAttribute("books", bookService.findAll());
         return "books/list";
-    }
-
-    public BookRepository getBookRepository() {
-        return bookRepository;
     }
 }
